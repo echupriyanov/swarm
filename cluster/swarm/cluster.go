@@ -768,7 +768,9 @@ func (c *Cluster) Volumes() cluster.Volumes {
 	for _, e := range c.engines {
 		out = append(out, e.Volumes()...)
 	}
-
+	for _, v := range out {
+		log.WithFields(log.Fields{"name": "cluster_volume_list"}).Debugf("Volume name: %s", v.Volume.Name)
+	}
 	return out
 }
 
